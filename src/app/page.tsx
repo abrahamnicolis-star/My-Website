@@ -3,11 +3,11 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { UtensilsCrossed, Package, Heart, Award, ArrowRight, Leaf, Trash2, Globe, Trophy } from 'lucide-react';
+import { UtensilsCrossed, Package, Heart, Award, ArrowRight, Leaf, Trash2, Globe, Trophy, DollarSign, Store } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { leaderboardUsers } from '@/lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 
@@ -41,6 +41,13 @@ const content = {
     impact2Subtitle: "By reducing food waste, we also cut down on the harmful greenhouse gases produced during its decomposition.",
     impact3Title: "Conserve Resources",
     impact3Subtitle: "Saving food means saving the water, land, and energy that went into producing it. It's a win for your wallet and the world.",
+    businessModel: "Our Business Model",
+    businessModelTitle: "Sustainable & Transparent",
+    businessModelSubtitle: "We've designed our revenue model to be straightforward and fair, ensuring we can continue our mission to fight food waste.",
+    businessModel1Title: "Customer Transaction Fee",
+    businessModel1Subtitle: "A small fee is added to each order, allowing us to maintain the platform and grow our community of food rescuers.",
+    businessModel2Title: "Merchant Subscription",
+    businessModel2Subtitle: "Partners join with an affordable annual subscription, giving them access to a new customer base and an effective way to manage surplus.",
     leaderboard: "Leaderboard",
     leaderboardTitle: "Top Heroes of the Month",
     leaderboardSubtitle: "See who's leading the charge in our food rescue mission. Earn points with every purchase!",
@@ -76,6 +83,13 @@ const content = {
     impact2Subtitle: "Dengan mengurangi limbah makanan, kita juga mengurangi gas rumah kaca berbahaya yang dihasilkan selama dekomposisinya.",
     impact3Title: "Hemat Sumber Daya",
     impact3Subtitle: "Menyimpan makanan berarti menghemat air, tanah, dan energi yang digunakan untuk memproduksinya. Ini adalah kemenangan untuk dompet dan dunia Anda.",
+    businessModel: "Model Bisnis Kami",
+    businessModelTitle: "Berkelanjutan & Transparan",
+    businessModelSubtitle: "Kami merancang model pendapatan kami agar lugas dan adil, memastikan kami dapat melanjutkan misi kami untuk memerangi limbah makanan.",
+    businessModel1Title: "Biaya Transaksi Pelanggan",
+    businessModel1Subtitle: "Biaya kecil ditambahkan ke setiap pesanan, memungkinkan kami untuk memelihara platform dan menumbuhkan komunitas penyelamat makanan kami.",
+    businessModel2Title: "Langganan Mitra",
+    businessModel2Subtitle: "Mitra bergabung dengan langganan tahunan yang terjangkau, memberi mereka akses ke basis pelanggan baru dan cara yang efektif untuk mengelola surplus.",
     leaderboard: "Papan Peringkat",
     leaderboardTitle: "Pahlawan Teratas Bulan Ini",
     leaderboardSubtitle: "Lihat siapa yang memimpin misi penyelamatan makanan kami. Dapatkan poin dengan setiap pembelian!",
@@ -102,7 +116,7 @@ export default function LandingPage() {
           <UtensilsCrossed className="size-8 text-primary" />
           <div className="flex flex-col">
             <h1 className="text-xl font-bold font-headline tracking-tight">
-              {t.appName}
+              {content.en.appName}
             </h1>
             <p className="text-sm text-muted-foreground -mt-1">{t.tagline}</p>
           </div>
@@ -257,9 +271,49 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        
+        {/* Business Model Section */}
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
+                  {t.businessModel}
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
+                  {t.businessModelTitle}
+                </h2>
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  {t.businessModelSubtitle}
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-4xl items-start gap-8 sm:grid-cols-2 md:gap-12 mt-12">
+              <div className="grid gap-1 text-center">
+                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
+                    <DollarSign className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">{t.businessModel1Title}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {t.businessModel1Subtitle}
+                </p>
+              </div>
+              <div className="grid gap-1 text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
+                    <Store className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">{t.businessModel2Title}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {t.businessModel2Subtitle}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
         {/* Leaderboard Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-secondary/30">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -294,7 +348,7 @@ export default function LandingPage() {
                         </div>
                         <p className="font-medium flex-1">{user.name}</p>
                         <div className="flex items-center gap-2 font-semibold text-primary">
-                          <Award className="size-5" />
+                          <Trophy className="size-5" />
                           <span>{user.points.toLocaleString()}</span>
                         </div>
                       </li>
@@ -325,3 +379,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+    
